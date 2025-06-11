@@ -5,17 +5,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 //@RequestMapping()
 public class LoginController {
 
     @GetMapping("/getUserInfo")
     public Object getUserInfo() {
-        UserInfo userInfo = new UserInfo();
-        // ##### 예제 데이터 반환 #####
-        userInfo.setEmail("YoonHan0@naver.com");
-        userInfo.setName("한영윤");
+        List<UserInfo> userInfoList = new ArrayList<>();
 
-        return userInfo;
+        // ##### 예제 데이터 반환 #####
+        UserInfo userInfo1 = new UserInfo();
+        userInfo1.setId("Spring");
+        userInfo1.setPassword("000000");
+        userInfo1.setName("스프링 김");
+        userInfo1.setEmail("Spring@naver.com");
+        userInfoList.add(userInfo1);
+
+        UserInfo userInfo2 = new UserInfo();
+        userInfo2.setId("YoonHan0");
+        userInfo2.setPassword("000000");
+        userInfo2.setName("한영 윤");
+        userInfo2.setEmail("YoonHan0@naver.com");
+        userInfoList.add(userInfo2);
+
+        return userInfoList;
     }
 }

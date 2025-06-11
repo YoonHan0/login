@@ -25,7 +25,7 @@ const MainHome = () => {
     }
     return (
         <div>
-            <h1>Main Home</h1>
+            <h1>등록된 회원정보</h1>
             {data && (
                 <div>
                     <p>Email: {data.email}</p>

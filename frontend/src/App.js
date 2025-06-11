@@ -1,17 +1,18 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import MainHome from './views/home/MainHome';
+import logo from './logo.svg';
+import MainHome from './components/views/home/MainHome';
+import Login from './components/views/Login';
+import UserList from './components/views/UserList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Login App</h1>
-      </header>
-      <main>
-        <MainHome />
-      </main>
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/userList" element={<UserList />} />
+        </Routes>
+    </Router>
   );
 }
 
