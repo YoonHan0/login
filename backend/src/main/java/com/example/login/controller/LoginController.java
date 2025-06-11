@@ -12,6 +12,11 @@ import java.util.List;
 //@RequestMapping()
 public class LoginController {
 
+    @GetMapping("/")
+    public Object getLogin() {
+        return "OK";
+    }
+
     @GetMapping("/getUserInfo")
     public Object getUserInfo() {
         List<UserInfo> userInfoList = new ArrayList<>();

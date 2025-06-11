@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import MainHome from './components/views/home/MainHome';
 import Login from './components/views/Login';
 import UserList from './components/views/UserList';
+import Main from './components/views/Main';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/userList" element={<UserList />} />
+          <Route path="/main" element={<Main />} />
         </Routes>
     </Router>
   );

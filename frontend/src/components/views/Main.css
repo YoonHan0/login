@@ -1,0 +1,44 @@
+.main-container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #e0f7fa, #81d4fa);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004d60;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  padding: 0.5rem 1rem;
+  background-color: #0288d1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #0277bd;
+}
+
+.main-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #01579b;
+}
+
+.main-description {
+  font-size: 1.25rem;
+  max-width: 600px;
+  color: #0277bd;
+}
