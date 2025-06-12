@@ -28,10 +28,9 @@ const Login = () => {
     }, []);
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
-    // 로그인 로직 시뮬레이션
     setTimeout(() => {
       console.log("### 로그인 버튼 클릭 ###");
       console.log("ID: ", id, "\nPW: ", password);
@@ -39,10 +38,15 @@ const Login = () => {
     }, 1000);
     
     try {
-        const response = await fetch('/login');      // GET요청
+        const response = await fetch('/login/');      // GET요청, 백엔드의 "/"로 요청 보낼 때는 url을 이렇게
         const data = await response.json();
+
         console.log("### 로그인 요청 확인 ### \n", data);
-        // navigate("/main");       // OK일 때    
+
+        if(data.resultText === "OK") {
+            navigate("/main");
+        }
+
     } catch (error) {
         console.log("FETCH ERROR ", error);
         setError(error);

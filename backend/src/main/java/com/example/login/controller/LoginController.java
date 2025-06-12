@@ -1,5 +1,6 @@
 package com.example.login.controller;
 
+import com.example.login.model.ResponseInfo;
 import com.example.login.model.UserInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,10 @@ public class LoginController {
 
     @GetMapping("/")
     public Object getLogin() {
-        return "OK";
+        ResponseInfo response = new ResponseInfo();
+        response.setResultText("OK");               // 테스트용으로 OK 리턴
+
+        return response;
     }
 
     @GetMapping("/getUserInfo")
