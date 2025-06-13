@@ -23,7 +23,7 @@ public class SecurityConfig {
                 );
 
         http
-                .formLogin((auth) -> auth.loginPage("/login")       // 권한이 없는 admin과 같은 경로로 사용자가 요청했을 때 오류 페이지가 아닌 작성한 "경로"로 Spring Security가 redirection 시켜줌
+                .formLogin((auth) -> auth.loginPage("/login")       // 권한이 없는 admin과 같은 경로로 사용자가 요청했을 때 오류 페이지가 아닌 작성한 "경로"로 Spring Security가 리다이랙트 시켜줌
                         .loginProcessingUrl("/loginProc")           // 해당 경로로 요청이 들어오면 Security가 로그인 처리를 진행
                         .defaultSuccessUrl("/login", true)
                         .permitAll()                                // 로그인 처리를 한다는게 permitAll() 권한을 준다는 것 같음
