@@ -5,14 +5,19 @@ import MainHome from './components/views/home/MainHome';
 import Login from './components/views/Login';
 import UserList from './components/views/UserList';
 import Main from './components/views/Main';
+import PrivateRoute from './components/views/PrivateRoute';
 
 function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/userList" element={<UserList />} />
-          <Route path="/main" element={<Main />} />
+          <Route path="/main" element={
+            <PrivateRoute>
+              <Main />
+            </PrivateRoute>
+          } />
         </Routes>
     </Router>
   );

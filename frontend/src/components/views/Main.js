@@ -5,7 +5,7 @@ import './Main.css';
 const Main = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
-        navigate("/");
+        navigate("/login");
     }
 
     return (

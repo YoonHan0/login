@@ -11,9 +11,9 @@ const UserList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/login/getUserInfo');      // GET요청
+                const response = await fetch('/getUserInfo');      // GET요청
+                console.log("### 데이터 확인 ### \n", response);
                 const data = await response.json();
-                console.log("### 데이터 확인 ### \n", data);
                 setData(data);
             } catch (error) {
                 console.log("FETCH ERROR ", error);

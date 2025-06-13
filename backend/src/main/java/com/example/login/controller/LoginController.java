@@ -13,8 +13,9 @@ import java.util.List;
 //@RequestMapping()
 public class LoginController {
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public Object getLogin() {
+        System.out.println("###### 로그인 요청 ######");
         ResponseInfo response = new ResponseInfo();
         response.setResultText("OK");               // 테스트용으로 OK 리턴
 
@@ -23,6 +24,7 @@ public class LoginController {
 
     @GetMapping("/getUserInfo")
     public Object getUserInfo() {
+        System.out.println("###### 회원정보 확인 요청 ######");
         List<UserInfo> userInfoList = new ArrayList<>();
 
         // ##### 예제 데이터 반환 #####

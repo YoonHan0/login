@@ -32,19 +32,34 @@ const Login = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      console.log("### 로그인 버튼 클릭 ###");
       console.log("ID: ", id, "\nPW: ", password);
       setIsLoading(false);
     }, 1000);
     
     try {
-        const response = await fetch('/login/');      // GET요청, 백엔드의 "/"로 요청 보낼 때는 url을 이렇게
-        const data = await response.json();
-
-        console.log("### 로그인 요청 확인 ### \n", data);
-
-        if(data.resultText === "OK") {
-            navigate("/main");
+        // const parameter = new URLSearchParams({
+        //     username: 'user',
+        //     password: '6b7e01d1-68f6-4090-91ce-b5a1ef310bb0',
+        // });
+        // const res = await callApi('/loginProc', parameter);
+        const res = await fetch('/loginProc', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                username: 'user',
+                password: '...',
+            }),
+            credentials: 'include', // 세션 쿠키를 받아오기 위함
+        });
+        
+        console.log("### 데이터 확인 ### \n", res);
+        if(res.ok) {
+            console.log("### 로그인 성공 ###");
+            navigate('/main');
+        } else {
+            console.log("### 로그인 실패 ###");
         }
 
     } catch (error) {
@@ -59,6 +74,18 @@ const Login = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
+  }
+
+  const callApi = async (url, body) => {
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: body,
+        credentials: 'include', // 세션 쿠키를 받아오기 위함
+    });
+    return res;
   }
 
   return (
