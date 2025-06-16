@@ -12,7 +12,7 @@ const UserList = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch('/getUserInfo');      // GET요청
-                console.log("### 데이터 확인 ### \n", response);
+                console.log("### 회원정보 조회 ### \n", response);
                 const data = await response.json();
                 setData(data);
             } catch (error) {
@@ -110,7 +110,7 @@ const UserList = () => {
                 )
             }
             <div style={styles.backButtonWrapper}>
-                <button onClick={() => navigate('/')} style={styles.backButton}>
+                <button onClick={() => navigate('/login')} style={styles.backButton}>
                     로그인 화면으로
                 </button>
             </div>

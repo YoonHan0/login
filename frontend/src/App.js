@@ -5,6 +5,7 @@ import MainHome from './components/views/home/MainHome';
 import Login from './components/views/Login';
 import UserList from './components/views/UserList';
 import Main from './components/views/Main';
+import Signup from './components/views/Signup';
 import PrivateRoute from './components/views/PrivateRoute';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Main />
             </PrivateRoute>
           } />
+          <Route path='/signup' element={<Signup />} />
         </Routes>
     </Router>
   );
