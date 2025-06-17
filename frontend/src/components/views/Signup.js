@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import "./Signup.css"
+import { ParkingMeter } from "lucide-react";
 
 const Signup = () => {
   const [userId, setUserId] = useState("");
@@ -14,31 +15,38 @@ const Signup = () => {
     e.preventDefault()
     setIsLoading(true)
 
-    // 회원가입 로직 구현
     try {
-      // 실제 API 호출 로직이 들어갈 자리
       await new Promise((resolve) => setTimeout(resolve, 1000)) // 임시 딜레이
       console.log("회원가입 시도:", { userId, password, name, email });
+      const param = {
+        id: userId, 
+        password: password, 
+        name: name, 
+        email: email
+      }
+      const res = await postCallApi('/joinProc', param);
       
-      const fetchData = async () => {
-          try {
-              const response = await fetch('/joinProc');      // GET요청
-              console.log("### 회원정보 조회 ### \n", response);
-              const data = await response.json();
-              
-              console.log("### 회원가입 완료 ### \n", data);
-
-          } catch (error) {
-              console.log("FETCH ERROR ", error);
-          }
-      };
-
+      console.log("### 회원가입 완료 ### \n", res);
 
     } catch (error) {
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.")
+      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      console.log("ERROR ", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
+  }
+
+  const postCallApi = async (url, param) => {
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(param),
+        credentials: 'include', // 세션 쿠키를 받아오기 위함
+    });
+
+    return res;
   }
 
   return (

@@ -49,7 +49,7 @@ const Login = () => {
             },
             body: new URLSearchParams({
                 username: 'user',
-                password: '50c9b3b6-d5b5-4190-831d-a5be5d558702',
+                password: '63930132-1a57-41e3-a332-3cd8fca17d5f',
             }),
             credentials: 'include', // 세션 쿠키를 받아오기 위함
         });
