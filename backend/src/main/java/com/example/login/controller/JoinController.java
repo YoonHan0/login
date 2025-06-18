@@ -16,8 +16,6 @@ public class JoinController {
     @ResponseBody
     public Object joinProcess(@RequestBody UserInfo userInfo) throws Exception {
         System.out.println("### 회원가입 진행 ### \n" + userInfo);
-        service.joinProcess(userInfo);
-
-        return "OK";
+        return service.joinProcess(userInfo);
     }
 }

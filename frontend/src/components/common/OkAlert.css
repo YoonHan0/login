@@ -48,7 +48,8 @@
 
 .alert-message {
   margin: 0;
-  font-size: 25px;
+  font-size: 18px;
+  font-family: "Jua", "Gowun Dodum", "Noto Sans KR";
   color: #64748b;
   line-height: 1.6;
 }

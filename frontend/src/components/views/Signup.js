@@ -29,10 +29,11 @@ const Signup = () => {
         email: email
       }
       const res = await postCallApi('/joinProc', param);
-      
-      console.log("### 회원가입 완료 ### \n", res);
+
       if(res.ok) {
-         setAlertOpen(true);
+        console.log("### 회원가입 완료 ### \n", res);
+        console.log("### 회원가입 완료 ### \n", res.json);
+        setAlertOpen(true);
       } else {
         alert("회원가입에 실패했습니다. 다시 시도해주세요.");
       }

@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface JoinMapper {
 
     void save(UserInfo param) throws Exception;
+
+    int countDuplicateId(UserInfo userInfo) throws Exception;
 }

@@ -15,14 +15,18 @@ public class JoinService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void joinProcess(UserInfo userInfo) throws Exception{
+    public String joinProcess(UserInfo userInfo) throws Exception{
 
-        // ~~ DB에 동일한 계정이 존재하는지 확인하는 로직이 추가되어야 함 ~~
-
+        // 체크하는 로직
+        int count = mapper.countDuplicateId(userInfo);
+        if(count > 0) {
+            return "DUPLICATE_ID";
+        }
         userInfo.setRole("ROLE_USER");
         userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));     // 비밀번호 암호화를 위한 로직 추가
 
         mapper.save(userInfo);
+        return "OK";
     }
 
 }

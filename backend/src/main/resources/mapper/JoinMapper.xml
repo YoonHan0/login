@@ -20,4 +20,11 @@
         )
     </insert>
 
+    <select id="countDuplicateId"
+            parameterType="com.example.login.model.UserInfo"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM USERS
+        WHERE ID = #{id}
+    </select>
 </mapper>
