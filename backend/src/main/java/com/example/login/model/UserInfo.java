@@ -2,10 +2,12 @@ package com.example.login.model;
 
 public class UserInfo {
 
+    private int no;
     private String id;
     private String password;
     private String name;
     private String email;
+    private String role;
 
     public void setId(String id) {
         this.id = id;
@@ -32,4 +34,31 @@ public class UserInfo {
         return email;
     }
 
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "no=" + no +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

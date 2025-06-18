@@ -23,9 +23,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/login").permitAll()
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/", "/login", "/joinProc").permitAll()
                         .requestMatchers("/getUserInfo").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 );
@@ -38,8 +38,9 @@ public class SecurityConfig {
                 );
 
         http
-                .csrf((auth) -> auth.disable());                    // POST방식으로 요청을 진행할 때 CSRF(사이트 위변조 방지 설정) 토큰을 보내야 로그인 처리를 가능하게 함, 이러한 설정은 Spring Security에서 설정되어 있음
-                                                                    // 개발환경에서는 토큰을 사용하는 것이 불편하므로 disable 처리, 추후에 inable 처리하도록 수정
+                .csrf((auth) -> auth.disable());        // POST방식으로 요청을 진행할 때 CSRF(사이트 위변조 방지 설정) 토큰을 보내야 로그인 처리를 가능하게 함, 이러한 설정은 Spring Security에서 설정되어 있음
+                                                        // 개발환경에서는 토큰을 사용하는 것이 불편하므로 disable 처리, 추후에 inable 처리하도록 수정
+
 
         return http.build();
     }
@@ -53,4 +54,6 @@ public class SecurityConfig {
     *
     *   requestMatchers()를 이용해 경로에 대한 접근을 제한할 때 순서가 중요하다. 많은 권한에 대한 제한은 가장 마지막에 작성하는 것이 올바르다.
     * */
+
+
 }

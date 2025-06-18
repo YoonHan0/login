@@ -1,8 +1,7 @@
 package com.example.login.service;
 
-import com.example.login.entity.UserEntity;
+import com.example.login.mapper.JoinMapper;
 import com.example.login.model.UserInfo;
-import com.example.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,24 +10,19 @@ import org.springframework.stereotype.Service;
 public class JoinService {
 
     @Autowired
-    private UserRepository repository;
+    private JoinMapper mapper;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void joinProcess(UserInfo userInfo) {
+    public void joinProcess(UserInfo userInfo) throws Exception{
 
-        // DB에 동일한 계정이 존재하는지 확인하는 로직이 추가되어야 함
+        // ~~ DB에 동일한 계정이 존재하는지 확인하는 로직이 추가되어야 함 ~~
 
-        UserEntity data = new UserEntity();
+        userInfo.setRole("ROLE_USER");
+        userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));     // 비밀번호 암호화를 위한 로직 추가
 
-        data.setId(userInfo.getId());
-        data.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));     // 비밀번호 암호화
-        data.setName(userInfo.getName());
-        data.setEmail(userInfo.getEmail());
-        data.setRole("ROLE_USER");
-
-        repository.save(data);
+        mapper.save(userInfo);
     }
 
 }

@@ -1,15 +1,19 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 import "./Signup.css"
-import { ParkingMeter } from "lucide-react";
+import OkAlert from "../common/OkAlert";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,13 +31,21 @@ const Signup = () => {
       const res = await postCallApi('/joinProc', param);
       
       console.log("### 회원가입 완료 ### \n", res);
-
+      if(res.ok) {
+         setAlertOpen(true);
+      } else {
+        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      }
     } catch (error) {
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      alert("회원가입 중 오류가 발생하였습니다😅");
       console.log("ERROR ", error);
     } finally {
       setIsLoading(false);
     }
+  }
+
+  const handleConfirm = () => {
+    navigate('/login');
   }
 
   const postCallApi = async (url, param) => {
@@ -132,7 +144,15 @@ const Signup = () => {
           </p>
         </div>
       </div>
-    </div>
+
+      <OkAlert
+        isOpen={alertOpen}
+        onClose={() => setAlertOpen(false)}
+        // title=""
+        message="회원가입이 완료되었습니다🎉"
+        onConfirm={handleConfirm}
+      />
+    </div>    
   )
 }
 export default Signup;
