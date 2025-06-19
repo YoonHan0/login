@@ -8,10 +8,13 @@ import OkAlert from "../common/OkAlert";
 
 const Signup = () => {
   const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  const [resultText, setResultText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
 
@@ -20,8 +23,8 @@ const Signup = () => {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // 임시 딜레이
-      console.log("회원가입 시도:", { userId, password, name, email });
+      await new Promise((resolve) => setTimeout(resolve, 1000));  // 딜레이
+
       const param = {
         id: userId, 
         password: password, 
@@ -29,14 +32,16 @@ const Signup = () => {
         email: email
       }
       const res = await postCallApi('/joinProc', param);
+      console.log("### 회원가입 응답 ### \n", res);
 
       if(res.ok) {
-        console.log("### 회원가입 완료 ### \n", res);
-        console.log("### 회원가입 완료 ### \n", res.json);
+        const _resultText = await res.text();
+        setResultText(_resultText);
         setAlertOpen(true);
       } else {
-        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+        alert("🚫 회원가입에 실패했습니다. 다시 시도해주세요.");
       }
+
     } catch (error) {
       alert("회원가입 중 오류가 발생하였습니다😅");
       console.log("ERROR ", error);
@@ -46,7 +51,9 @@ const Signup = () => {
   }
 
   const handleConfirm = () => {
-    navigate('/login');
+    if(resultText === "OK") {
+      navigate('/login');
+    }
   }
 
   const postCallApi = async (url, param) => {
@@ -150,7 +157,11 @@ const Signup = () => {
         isOpen={alertOpen}
         onClose={() => setAlertOpen(false)}
         // title=""
-        message="회원가입이 완료되었습니다🎉"
+        message={
+          resultText === "OK" ? "회원가입이 완료되었습니다🎉" 
+          : resultText === "DUPLICATE_ID" ? "⚠️ 중복된 아이디입니다. 다시 입력해 주세요."
+          : "🚫 회원가입에 실패했습니다. 다시 시도해주세요."
+        }
         onConfirm={handleConfirm}
       />
     </div>    
