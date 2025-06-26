@@ -17,7 +17,7 @@ public class JoinService {
 
     public String joinProcess(UserInfo userInfo) throws Exception{
 
-        // 체크하는 로직
+        // 동일한 회원정보가 존재하는지 체크하는 로직
         int count = mapper.countDuplicateId(userInfo);
         if(count > 0) {
             return "DUPLICATE_ID";
