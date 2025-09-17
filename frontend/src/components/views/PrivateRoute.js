@@ -23,6 +23,9 @@ const PrivateRoute = ({ children }) => {
     if (isAuthenticated === null) {
         return <div>인증 확인 중...</div>; // 또는 로딩 스피너
     }
+
+    console.log("=== PrivateRoute Component === \n", isAuthenticated);
+    
     return isAuthenticated ? children : <Navigate to="/login" replace />
 };
 

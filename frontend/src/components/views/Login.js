@@ -28,6 +28,7 @@ const Login = () => {
     }, []);
 
   const handleLogin = async (e) => {
+    console.log("=== 로그인 버튼 클릭 ===");
     e.preventDefault();
     setIsLoading(true);
 
@@ -42,6 +43,7 @@ const Login = () => {
         //     password: '6b7e01d1-68f6-4090-91ce-b5a1ef310bb0',
         // });
         // const res = await callApi('/loginProc', parameter);
+        console.log("=== 로그인 데이터 확인 === \n", id, " : ", password);
         const res = await fetch('/loginProc', {
             method: 'POST',
             headers: {

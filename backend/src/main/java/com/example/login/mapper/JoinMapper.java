@@ -10,5 +10,5 @@ public interface JoinMapper {
 
     int countDuplicateId(UserInfo userInfo) throws Exception;
 
-    UserInfo findByName(String name);
+    UserInfo findByName(String id);
 }

@@ -18,12 +18,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     /*
     * - username 인자
     *   Spring Security가 검증을 위해서 username을 인자로 받음
-    *   ?: 무조건 username 인자만 가능한가
-    *   ?: UserDetailsService 인터페이스를 굳이 implements 해야하나?
+    *   ?: 무조건 username 인자만 가능한가 > 인터페이스 내에 loadUserByUsername() 메서드가 userName만 인자로 받고 있어서 쩔수
+    *   ?: UserDetailsService 인터페이스를 굳이 implements 해야하나? > Security 에 구현되어 있는 인터페이스라서 해당 로직을 사용할거면 해야할듯
     * */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+        System.out.println("===== loadUserByUsername() 호출 ===== " + username);
         UserInfo userInfo = mapper.findByName(username);
 
         if(userInfo != null) {

@@ -14,7 +14,10 @@ public class CheckController {
 
     @GetMapping("/checkLogin")
     public Object checkLogin(HttpServletRequest request) {
+
+        System.out.println("===== checkLogin() 호출 =====");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();                       // Spring Security에 저장된 사용자 인증 정보 가져오기
+
         if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {    // 인증이 된 사용자인지 확인, 로그인하지 않은 사용자일 경우 Spring Security에서는 AnonymousAuthenticationToken으로 나타남, 로그인 하지 않은 사용자도 auth.isAuthenticated() == true일 수 있기에 확인
             return Map.of("authenticated", true);
         } else {
