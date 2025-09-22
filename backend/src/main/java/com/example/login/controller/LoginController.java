@@ -15,7 +15,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public Object getLogin() {
-        System.out.println("###### 로그인 요청 ######");
+        System.out.println("###### 로그인 controller ######");
         ResponseInfo response = new ResponseInfo();
         response.setResultText("OK");               // 테스트용으로 OK 리턴
 

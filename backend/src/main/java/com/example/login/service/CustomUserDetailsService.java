@@ -26,9 +26,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         System.out.println("===== loadUserByUsername() 호출 ===== " + username);
         UserInfo userInfo = mapper.findByName(username);
 
-        if(userInfo != null) {
-            return new CustomUserDetails(userInfo);
+        if(userInfo == null) {
+            throw new UsernameNotFoundException("User not found: " + username);
         }
-        return null;
+        System.out.println("DB 저장된 암호화 비밀번호: " + userInfo.getPassword());
+
+        return new CustomUserDetails(userInfo);
+        /*
+        ✅ /login?error 호출하는 이유
+        1. id가 틀림 (2와 마찬가지로 getUsername()을 호출해서 비교하지 않을까)
+        2. Spring Securuty가 자동으로 loadUserByUsername()가 리턴한 UserDetails 클래스의 getPassword()를 호출해서
+           사용자가 로그인 폼에서 입력한 평문과 비교해서 틀리면 /login?error 호출해버림
+        3. password가 디비에 평문으로 입력되어 있으면 -> 로그인 실패로 처리
+        * */
     }
 }

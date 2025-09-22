@@ -50,8 +50,8 @@ const Login = () => {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                username: 'user',
-                password: '...',
+                username: id,
+                password: password,
             }),
             credentials: 'include', // 세션 쿠키를 받아오기 위함
         });

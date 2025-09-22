@@ -12,8 +12,8 @@ spring:
 
 
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test  # 최초 한 번:   jdbc:h2:~/test
-    driver-class-name: org.h2.Driver
+    url: jdbc:log4jdbc:h2:tcp://localhost/~/test  # 최초 한 번:   jdbc:h2:~/test
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: sa
     password:
 
@@ -29,5 +29,10 @@ mybatis:
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.example.login.model
 
-
-
+logging:
+  level:
+    jdbc.sqlonly: DEBUG      # 물음표(?) 대신 실제 값이 치환된 SQL 출력
+    jdbc.sqltiming: INFO     # SQL + 실행 시간
+    jdbc.audit: OFF
+    jdbc.resultset: OFF
+    jdbc.connection: OFF
