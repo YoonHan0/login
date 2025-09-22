@@ -21,3 +21,13 @@
   3. admin과 같은 아이디 사용 불가
   4. 비밀번호 자리수
   5. 비밀번호 특수문자 포함 필수
+ 
+- 흐름 정리  
+1. “/loginProc” 경로로 로그인 호출 (id, pw를 담고)
+2. SecurityConfig.java > filterChain() 의  … .loginProcessingUrl("/loginProc”)으로 들어오면서 Spring Security가 로그인 처리를 진행
+3. CustomUserDetailsService 클래스의 loadUserByUsername() 호출
+    1. 로그인 실패 시 “/login?error” 호출되면서 …
+    2. 로그인 성공 시  “/login” 호출 (SecurityConfig에서 설정) ok 반환되면 PrivateRoute 컴포넌트로 이동
+4. FE) PrivateRoute.js 에서 “/checkLogin” 호출, BE) 인증된 사용자인지 확인
+    1. 인증 성공 시 Main 컴포넌트로 이동
+    2. 실패 시 Login 컴포넌트로 이동
