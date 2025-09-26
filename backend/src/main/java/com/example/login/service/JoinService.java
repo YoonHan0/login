@@ -22,7 +22,7 @@ public class JoinService {
         if(count > 0) {
             return "DUPLICATE_ID";
         }
-        userInfo.setRole("ROLE_USER");
+        userInfo.setRole("USER");
         userInfo.setPassword(bCryptPasswordEncoder.encode(userInfo.getPassword()));     // 비밀번호 암호화를 위한 로직 추가
 
         mapper.save(userInfo);
