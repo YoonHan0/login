@@ -36,6 +36,12 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/login", true)
                         .permitAll()                                // 로그인 처리를 한다는게 permitAll() 권한을 준다는 것 같음
                 );
+        /*
+        * 인증이 되지 않은 요청은 .loginPage("/login") 경로로 이동하고,
+        * 로그인을 수행하고 로그인 완료 버튼을 누르면 .loginProcessingUrl("/loginProc"), Spring Security가 로그인 요청을 가로채 로그인을 진행하고
+        * 로그인이 정상적으로 완료되면 .defaultSuccessUrl("/login", true) 경로로 이동한다.
+        * [출처] https://twoline.tistory.com/103
+        * */
 
         http
                 .csrf((auth) -> auth.disable());        // POST방식으로 요청을 진행할 때 CSRF(사이트 위변조 방지 설정) 토큰을 보내야 로그인 처리를 가능하게 함, 이러한 설정은 Spring Security에서 설정되어 있음
